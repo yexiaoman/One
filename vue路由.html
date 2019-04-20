@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+    <div id="app">
+        <router-link to="/one">aaa</router-link>
+        <router-view></router-view>
+    </div>
+    <!-- 使用vue路由 1.下载 2. 引入 3.创建路由实例并挂载 4. 配置路由规则-->
+    <script src="../vue.js"></script>
+    <script src="../node_modules/vue-router/dist/vue-router.js"></script>
+    <script>
+        const One = Vue.component('one',{
+            template: `<p>我是组件</p>`
+        })
+        const router = new VueRouter({
+            routes:[
+                { path : '/one', component: One}
+            ]
+        })
+        const vm = new Vue({
+            el: '#app',
+            router,
+        })
+    </script>
+</body>
+</html>

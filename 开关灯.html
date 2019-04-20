@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <style>
+        .router{
+            width: 100px;
+            height: 100px;
+            border-radius: 50%;
+            background-color: #000;
+        }
+        .yellow{
+            background-color: yellowgreen;
+        }
+        .botom{
+            width: 100px;
+            height: 60px;
+            background-color: skyblue;
+        }
+        button{
+            width: 40px;
+            height: 40px;
+            background-color: pink;
+        }
+    </style>
+</head>
+<body>
+    <div id="app">
+        <deng></deng>
+        <bottom></bottom>
+    </div>
+    
+    
+
+     <script src="../vue.js"></script>
+     <script>
+         Vue.component('deng',{
+             template: `<div class="router" :class="{ yellow : show}" ></div>`,
+             data(){
+                 return{
+                     show: false
+                 }
+             },
+             created(){
+                 bus.$on('fnn', res=> this.show = res)
+             }
+         })
+         Vue.component('bottom',{
+             template: `<div class="botom">
+        <button @click="click1">开</button>
+        <button @click="click2">关</button>
+     </div>`,
+     methods: {
+         click1(){
+             bus.$emit('fnn', true)
+         },
+         click2(){
+             bus.$emit('fnn', false)
+         }
+     }
+         })
+         const bus = new Vue()
+         const vm = new Vue({
+             el : '#app'
+         })
+     </script>
+</body>
+</html>
